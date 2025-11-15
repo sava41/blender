@@ -313,6 +313,36 @@ ccl_device_forceinline void film_write_shadow_catcher_bounce_data(
 #endif /* __SHADOW_CATCHER__ */
 
 /* --------------------------------------------------------------------
+ * Baking passes.
+ */
+
+/* Write dominant direction pass for baking.
+ * Accumulates the ray direction weighted by the light contribution to get
+ * the dominant direction of light arriving at each texel. */
+ccl_device_inline void film_write_bake_dominant_direction_pass(
+    KernelGlobals kg,
+    ConstIntegratorState state,
+    ccl_global float *ccl_restrict buffer,
+    const Spectrum contribution)
+{
+  if (kernel_data.film.pass_bake_dominant_direction == PASS_UNUSED) {
+    return;
+  }
+
+  /* Get ray direction from integrator state. */
+  const float3 ray_D = INTEGRATOR_STATE(state, ray, D);
+
+  /* Weight the direction by the luminance of the contribution. */
+  const float3 contribution_rgb = spectrum_to_rgb(contribution);
+  const float weight = average(contribution_rgb);
+  const float3 weighted_direction = ray_D * weight;
+
+  /* Accumulate to the pass. */
+  film_write_pass_float3(buffer + kernel_data.film.pass_bake_dominant_direction,
+                        weighted_direction);
+}
+
+/* --------------------------------------------------------------------
  * Render passes.
  */
 
@@ -616,6 +646,7 @@ ccl_device_inline void film_write_background(KernelGlobals kg,
                                          buffer,
                                          kernel_data.film.pass_background,
                                          kernel_data.background.lightgroup);
+  film_write_bake_dominant_direction_pass(kg, state, buffer, contribution);
 }
 
 /* Write emission to render buffer. */
@@ -635,6 +666,7 @@ ccl_device_inline void film_write_volume_emission(KernelGlobals kg,
   film_write_combined_pass(kg, path_flag, sample, contribution, buffer);
   film_write_emission_or_background_pass(
       kg, state, contribution, buffer, kernel_data.film.pass_emission, lightgroup);
+  film_write_bake_dominant_direction_pass(kg, state, buffer, contribution);
 }
 
 ccl_device_inline void film_write_surface_emission(KernelGlobals kg,
@@ -654,6 +686,7 @@ ccl_device_inline void film_write_surface_emission(KernelGlobals kg,
   film_write_combined_pass(kg, path_flag, sample, contribution, buffer);
   film_write_emission_or_background_pass(
       kg, state, contribution, buffer, kernel_data.film.pass_emission, lightgroup);
+  film_write_bake_dominant_direction_pass(kg, state, buffer, contribution);
 }
 
 CCL_NAMESPACE_END
