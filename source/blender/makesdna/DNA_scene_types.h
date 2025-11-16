@@ -234,7 +234,7 @@ typedef enum eScenePassType {
   SCE_PASS_POSITION = (1 << 7),
   SCE_PASS_NORMAL = (1 << 8),
   SCE_PASS_VECTOR = (1 << 9),
-  SCE_PASS_UNUSED_5 = (1 << 10), /* REFRACT */
+  SCE_PASS_DOMINANT_DIRECTION = (1 << 10),
   SCE_PASS_INDEXOB = (1 << 11),
   SCE_PASS_UV = (1 << 12),
   SCE_PASS_UNUSED_6 = (1 << 13), /* INDIRECT */
@@ -288,6 +288,8 @@ typedef enum eScenePassType {
 #define RE_PASSNAME_SUBSURFACE_DIRECT "SubsurfaceDir"
 #define RE_PASSNAME_SUBSURFACE_INDIRECT "SubsurfaceInd"
 #define RE_PASSNAME_SUBSURFACE_COLOR "SubsurfaceCol"
+
+#define RE_PASSNAME_DOMINANT_DIRECTION "Dominant Direction"
 
 #define RE_PASSNAME_FREESTYLE "Freestyle"
 #define RE_PASSNAME_BLOOM "BloomCol"

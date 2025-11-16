@@ -185,14 +185,15 @@ def list_render_passes(scene, srl):
     # autopep8: off
 
     # Data passes.
-    if srl.use_pass_z:                     yield ("Depth",         "Z",    'VALUE')
-    if srl.use_pass_mist:                  yield ("Mist",          "Z",    'VALUE')
-    if srl.use_pass_position:              yield ("Position",      "XYZ",  'VECTOR')
-    if srl.use_pass_normal:                yield ("Normal",        "XYZ",  'VECTOR')
-    if srl.use_pass_vector:                yield ("Vector",        "XYZW", 'VECTOR')
-    if srl.use_pass_uv:                    yield ("UV",            "UVA",  'VECTOR')
-    if srl.use_pass_object_index:          yield ("IndexOB",       "X",    'VALUE')
-    if srl.use_pass_material_index:        yield ("IndexMA",       "X",    'VALUE')
+    if srl.use_pass_z:                     yield ("Depth",           "Z",    'VALUE')
+    if srl.use_pass_mist:                  yield ("Mist",            "Z",    'VALUE')
+    if srl.use_pass_position:              yield ("Position",        "XYZ",  'VECTOR')
+    if srl.use_pass_normal:                yield ("Normal",          "XYZ",  'VECTOR')
+    if srl.use_pass_dominant_direction:    yield ("Dominant Direction", "XYZ", 'VECTOR')
+    if srl.use_pass_vector:                yield ("Vector",          "XYZW", 'VECTOR')
+    if srl.use_pass_uv:                    yield ("UV",              "UVA",  'VECTOR')
+    if srl.use_pass_object_index:          yield ("Object Index",    "X",    'VALUE')
+    if srl.use_pass_material_index:        yield ("Material Index",  "X",    'VALUE')
 
     # Light passes.
     if srl.use_pass_diffuse_direct:        yield ("DiffDir",       "RGB",  'COLOR')

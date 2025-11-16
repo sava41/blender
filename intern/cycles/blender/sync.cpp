@@ -646,7 +646,8 @@ static bool get_known_pass_type(BL::RenderPass &b_pass, PassType &type, PassMode
   MAP_PASS("Mist", PASS_MIST, false);
   MAP_PASS("Position", PASS_POSITION, false);
   MAP_PASS("Normal", PASS_NORMAL, false);
-  MAP_PASS("IndexOB", PASS_OBJECT_ID, false);
+  MAP_PASS("Dominant Direction", PASS_BAKE_DOMINANT_DIRECTION, false);
+  MAP_PASS("Object Index", PASS_OBJECT_ID, false);
   MAP_PASS("UV", PASS_UV, false);
   MAP_PASS("Vector", PASS_MOTION, false);
   MAP_PASS("IndexMA", PASS_MATERIAL_ID, false);
