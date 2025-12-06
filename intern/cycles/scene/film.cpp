@@ -365,6 +365,9 @@ void Film::device_update(Device *device, DeviceScene *dscene, Scene *scene)
       case PASS_BAKE_DOMINANT_DIRECTION:
         kfilm->pass_bake_dominant_direction = kfilm->pass_stride;
         break;
+      case PASS_BAKE_DOMINANT_DIRECTION_WEIGHT:
+        kfilm->pass_bake_dominant_direction_weight = kfilm->pass_stride;
+        break;
 
       case PASS_CRYPTOMATTE:
         kfilm->pass_cryptomatte = have_cryptomatte ?

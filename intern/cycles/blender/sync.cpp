@@ -706,6 +706,7 @@ static bool get_known_pass_type(BL::RenderPass &b_pass, PassType &type, PassMode
   MAP_PASS("BakePrimitive", PASS_BAKE_PRIMITIVE, false);
   MAP_PASS("BakeSeed", PASS_BAKE_SEED, false);
   MAP_PASS("BakeDifferential", PASS_BAKE_DIFFERENTIAL, false);
+  MAP_PASS("BakeDominantDirectionWeight", PASS_BAKE_DOMINANT_DIRECTION_WEIGHT, false);
 
   MAP_PASS("Denoising Normal", PASS_DENOISING_NORMAL, true);
   MAP_PASS("Denoising Albedo", PASS_DENOISING_ALBEDO, true);

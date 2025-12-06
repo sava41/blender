@@ -363,6 +363,11 @@ ccl_device_inline void film_write_bake_dominant_direction_pass(
   /* Accumulate to the pass. */
   film_write_pass_float3(buffer + kernel_data.film.pass_bake_dominant_direction,
                         weighted_direction);
+
+  /* Accumulate the weight to the weight pass. */
+  if (kernel_data.film.pass_bake_dominant_direction_weight != PASS_UNUSED) {
+    film_write_pass_float(buffer + kernel_data.film.pass_bake_dominant_direction_weight, weight);
+  }
 }
 
 /* --------------------------------------------------------------------

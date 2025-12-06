@@ -143,6 +143,7 @@ KERNEL_STRUCT_MEMBER(film, int, pass_bake_primitive)
 KERNEL_STRUCT_MEMBER(film, int, pass_bake_seed)
 KERNEL_STRUCT_MEMBER(film, int, pass_bake_differential)
 KERNEL_STRUCT_MEMBER(film, int, pass_bake_dominant_direction)
+KERNEL_STRUCT_MEMBER(film, int, pass_bake_dominant_direction_weight)
 /* Shadow catcher. */
 KERNEL_STRUCT_MEMBER(film, int, use_approximate_shadow_catcher)
 /* Path Guiding */

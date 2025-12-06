@@ -103,6 +103,7 @@ const NodeEnum *Pass::get_type_enum()
     pass_type_enum.insert("bake_seed", PASS_BAKE_SEED);
     pass_type_enum.insert("bake_differential", PASS_BAKE_DIFFERENTIAL);
     pass_type_enum.insert("bake_dominant_direction", PASS_BAKE_DOMINANT_DIRECTION);
+    pass_type_enum.insert("bake_dominant_direction_weight", PASS_BAKE_DOMINANT_DIRECTION_WEIGHT);
 
 #ifdef WITH_CYCLES_DEBUG
     pass_type_enum.insert("guiding_color", PASS_GUIDING_COLOR);
@@ -378,6 +379,11 @@ PassInfo Pass::get_info(const PassType type,
       break;
     case PASS_BAKE_DOMINANT_DIRECTION:
       pass_info.num_components = 3;
+      pass_info.use_exposure = false;
+      pass_info.use_filter = true;
+      break;
+    case PASS_BAKE_DOMINANT_DIRECTION_WEIGHT:
+      pass_info.num_components = 1;
       pass_info.use_exposure = false;
       pass_info.use_filter = true;
       break;
