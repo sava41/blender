@@ -342,11 +342,11 @@ ccl_device_forceinline void film_write_shadow_catcher_bounce_data(
 /* Write dominant direction pass for baking.
  * Accumulates the ray direction weighted by the light contribution to get
  * the dominant direction of light arriving at each texel. */
-ccl_device_inline void film_write_bake_dominant_direction_pass(
-    KernelGlobals kg,
-    ConstIntegratorState state,
-    ccl_global float *ccl_restrict buffer,
-    const Spectrum contribution)
+ccl_device_inline void film_write_bake_dominant_direction_pass(KernelGlobals kg,
+                                                               ConstIntegratorState state,
+                                                               ccl_global float *ccl_restrict
+                                                                   buffer,
+                                                               const Spectrum contribution)
 {
   if (kernel_data.film.pass_bake_dominant_direction == PASS_UNUSED) {
     return;
@@ -362,12 +362,10 @@ ccl_device_inline void film_write_bake_dominant_direction_pass(
 
   /* Accumulate to the pass. */
   film_write_pass_float3(buffer + kernel_data.film.pass_bake_dominant_direction,
-                        weighted_direction);
+                         weighted_direction);
 
   /* Accumulate the weight to the weight pass. */
-  if (kernel_data.film.pass_bake_dominant_direction_weight != PASS_UNUSED) {
-    film_write_pass_float(buffer + kernel_data.film.pass_bake_dominant_direction_weight, weight);
-  }
+  film_write_pass_float(buffer + kernel_data.film.pass_bake_dominant_direction_weight, weight);
 }
 
 /* --------------------------------------------------------------------
